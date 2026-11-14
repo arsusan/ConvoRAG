@@ -5,7 +5,7 @@ A FastAPI backend with two REST APIs:
 1. **Document Ingestion API**: upload `.pdf` or `.txt` files, extract text, split it with one of two selectable chunking strategies, embed the chunks, store the vectors in **Qdrant**, and save document metadata in an **SQL database**.
 2. **Conversational RAG API**: a custom retrieval-augmented generation pipeline (no `RetrievalQAChain`, no LangChain) with **Redis** chat memory, multi-turn handling, and **LLM-driven interview booking** that stores bookings in SQL.
 
-The whole stack runs on free tiers: Qdrant Cloud, Upstash or Redis Cloud, Groq, and local embeddings. Docker is optional.
+The whole stack runs on free tiers: Qdrant Cloud, Redis Cloud, Groq, and local embeddings.
 
 ---
 
@@ -25,9 +25,9 @@ The whole stack runs on free tiers: Qdrant Cloud, Upstash or Redis Cloud, Groq, 
 | Concern         | Choice                                                             |
 | --------------- | ------------------------------------------------------------------ |
 | Web framework   | FastAPI + Uvicorn                                                  |
-| Vector database | Qdrant (Qdrant Cloud free tier, or Docker locally)                 |
+| Vector database | Qdrant (Qdrant Cloud free tier)                                    |
 | SQL database    | SQLite through SQLAlchemy 2.0 (change `DATABASE_URL` for Postgres) |
-| Chat memory     | Redis (Upstash or Redis Cloud free tier, or Docker locally)        |
+| Chat memory     | Redis (Upstash or Redis Cloud free tier)                           |
 | Embeddings      | `sentence-transformers/all-MiniLM-L6-v2` (local)                   |
 | LLM             | Groq `llama-3.3-70b-versatile` through its OpenAI-compatible API   |
 | PDF parsing     | pypdf                                                              |
