@@ -137,12 +137,12 @@ class ConversationService:
 
         booking = create_booking(db, session_id, cleaned)
         await self._memory.clear_booking_state(session_id)
-        return (
+        message = (
             f"Your interview is booked, {booking.name}. Date: {booking.interview_date}, "
             f"time: {booking.interview_time.strftime('%H:%M')}, email: {booking.email}. "
-            f"Confirmation ID: {booking.id}.",
-            booking.id,
+            f"Confirmation ID: {booking.id}."
         )
+        return message, booking.id
 
     # ---------- custom RAG ----------
     async def _handle_question(

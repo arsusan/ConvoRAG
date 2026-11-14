@@ -1,5 +1,5 @@
 from datetime import date, datetime, time
-from enum import Enum
+from enum import StrEnum
 from typing import Literal
 
 from pydantic import BaseModel, ConfigDict, Field
@@ -10,7 +10,7 @@ class ChatMessage(BaseModel):
     content: str
 
 
-class Intent(str, Enum):
+class Intent(StrEnum):
     QUESTION = "question"
     BOOKING = "booking"
     CANCEL_BOOKING = "cancel_booking"

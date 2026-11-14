@@ -1,11 +1,10 @@
-from datetime import date, datetime, time, timezone
-
+from datetime import UTC, date, datetime, time
 from sqlalchemy import DateTime, String
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 
 
 def _utcnow() -> datetime:
-    return datetime.now(timezone.utc)
+    return datetime.now(UTC)
 
 
 class Base(DeclarativeBase):

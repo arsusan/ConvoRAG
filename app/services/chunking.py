@@ -1,8 +1,8 @@
 import re
-from enum import Enum
+from enum import StrEnum
 
 
-class ChunkingStrategy(str, Enum):
+class ChunkingStrategy(StrEnum):
     FIXED = "fixed"        # sliding character window
     SENTENCE = "sentence"  # sentence-aware packing
 
@@ -22,10 +22,14 @@ def fixed_size_chunks(text: str, chunk_size: int, overlap: int) -> list[str]:
     _validate(chunk_size, overlap)
     step = chunk_size - overlap
     chunks: list[str] = []
-    for start in range(0, len(text), step):
+    start = 0
+    while start < len(text):
         piece = text[start : start + chunk_size].strip()
         if piece:
             chunks.append(piece)
+        if start + chunk_size >= len(text):  # window reached the end; no redundant tail chunk
+            break
+        start += step
     return chunks
 
 
